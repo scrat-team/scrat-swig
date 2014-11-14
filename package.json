@@ -1,7 +1,7 @@
-gi{
+{
   "name": "scrat-swig",
   "version": "0.0.1",
-  "description": "swig extends for scrat",
+  "description": "Extensions of swig for scrat",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -15,6 +15,9 @@ gi{
     "swig",
     "fis"
   ],
+  "dependencies": {
+    "swig": "1.4.2"
+  },
   "author": "fouber <fouber.NET@gmail.com>",
   "license": "MIT",
   "bugs": {
