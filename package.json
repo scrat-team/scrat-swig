@@ -1,0 +1,24 @@
+gi{
+  "name": "scrat-swig",
+  "version": "0.0.1",
+  "description": "swig extends for scrat",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/scrat-team/scrat-swig.git"
+  },
+  "keywords": [
+    "scrat",
+    "swig",
+    "fis"
+  ],
+  "author": "fouber <fouber.NET@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/scrat-team/scrat-swig/issues"
+  },
+  "homepage": "https://github.com/scrat-team/scrat-swig"
+}
