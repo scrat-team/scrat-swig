@@ -1,0 +1,1 @@
+## Wrap of swig for [scrat](https://github.com/scrat-team/scrat)
