@@ -3,5 +3,5 @@ var swig = require('swig')
   var t = require('./tags/' + tag);
   swig.setTag(tag, t.parse, t.compile, t.ends, t.blockLevel || false);
 })
-swig.Resource = require('./lib/resource.js')
+swig.Swig.prototype.Resource = require('./lib/resource.js')
 module.exports = swig
