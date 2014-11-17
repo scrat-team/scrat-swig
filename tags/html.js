@@ -18,7 +18,7 @@ exports.compile = function(compiler, args, content, parents, options, blockName)
       '_output += "<html ' + (attrs.join(' ').replace(/"/g, "\\\"")) + '>";',
       code + ';',
       '_output += "</html>";',
-      '_output = _ctx._res.replace(_output);'
+      '_output = _ctx._res.render(_output);'
     ].join('');
 };
 
