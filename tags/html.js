@@ -13,7 +13,7 @@ exports.compile = function(compiler, args, content, parents, options, blockName)
 
     var code = compiler(content, parents, options, blockName);
     return [
-      '_ctx._res = new _ctx._Resource(_ctx._map);',
+      '_ctx._res = new _swig.Resource(_ctx._map);',
       '_ctx._res.pagelet(_ctx.pagelets);',
       '_output += "<html ' + (attrs.join(' ').replace(/"/g, "\\\"")) + '>";',
       code + ';',
