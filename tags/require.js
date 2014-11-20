@@ -13,7 +13,7 @@ exports.compile = function(compiler, args) {
 
   return (ignore ? '  try {\n' : '') +
     '_output += _ctx._res.include(' + file + ', {' +
-    // 'resolveFrom: "' + parentFile + '"' +
+    'resolveFrom: "' + parentFile + '"' +
     '}, ' +
     ((onlyCtx && w) ? w : (!w ? '_ctx' : '_utils.extend({}, _ctx, ' + w + ')')) +
     ');\n' +
