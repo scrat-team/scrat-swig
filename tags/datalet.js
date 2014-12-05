@@ -32,7 +32,6 @@
  * @param {*}   value     Valid variable output.
  */
 exports.compile = function (compiler, args) {
-  console.log(args)
   return args.join(' ') + ';\n'
 };
 
