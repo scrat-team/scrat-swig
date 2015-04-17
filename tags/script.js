@@ -1,7 +1,7 @@
 var exports = module.exports;
 
 exports.compile = function(compiler, args, content, parents, options, blockName) {
-    var code = '_ctx._res.addScript((function () { var _output = "";' +
+    var code = '_ext._resource.addScript((function () { var _output = "";' +
         compiler(content, parents, options, blockName) +
         ' return _output; })());';
     return code;

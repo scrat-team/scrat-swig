@@ -1,6 +1,6 @@
 {
   "name": "scrat-swig",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Extensions of swig for scrat",
   "main": "index.js",
   "scripts": {
@@ -11,9 +11,7 @@
     "url": "https://github.com/scrat-team/scrat-swig.git"
   },
   "keywords": [
-    "scrat",
-    "swig",
-    "fis"
+    "pagelet", "quickling", "scrat", "swig", "fis"
   ],
   "dependencies": {
     "swig": "1.4.2"

@@ -18,7 +18,7 @@ exports.compile = function (compiler, args, content, parents, options, blockName
   });
   var code = compiler(content, parents, options, blockName);
   attrs = attrs.length ? ' ' + attrs.join(' ').replace(/["\\]/g, '\\$&') : '';
-  return '_output += "<body' + attrs + '>";' + code + '_output += _ctx._res.JS_HOOK + "</body>";';
+  return '_output += "<body' + attrs + '>";' + code + '_output += _ext._resource.JS_HOOK + "</body>";';
 };
 
 exports.parse = function (str, line, parser, types, stack, opts) {

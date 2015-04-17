@@ -91,7 +91,7 @@ exports.parse = function (str, line, parser, types) {
     }
     this.out.push(
       // Prevent the set from spilling into global scope
-      '_ctx._res._datalets.' + nameSet
+      '_ext._resource._datalets.' + nameSet
     );
     this.out.push(token.match)
     this.filterApplyIdx.push(this.out.length)

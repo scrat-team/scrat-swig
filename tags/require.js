@@ -12,7 +12,7 @@ exports.compile = function(compiler, args) {
     w = args.join('');
 
   return (ignore ? '  try {\n' : '') +
-    '_output += _ctx._res.include(' + file + ', {' +
+    '_output += _ext._resource.include(' + file + ', {' +
     // 'resolveFrom: "' + parentFile + '"' +
     '}, ' +
     ((onlyCtx && w) ? w : (!w ? '_ctx' : '_utils.extend({}, _ctx, ' + w + ')')) +
