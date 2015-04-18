@@ -7,23 +7,33 @@ exports.compile = function (compiler, args, content, parents, options, blockName
             id = arg.value;
         } else if(arg.key === '$tag') {
             tag = arg.value.substring(1, arg.value.length - 1);
+            if(/^none$/i.test(tag)){
+                tag = false;
+            }
         } else {
             attrs.push(arg.key + '=' + arg.value);
         }
     });
-    tag = tag || 'div';
     if(id){
         var code = compiler(content, parents, options, blockName);
-        attrs = attrs.length ? ' ' + attrs.join(' ').replace(/["\\]/g, '\\$&') : '';
-        code = [
-            '_output += "<' + tag + ' data-pagelet=\\"" + _ext._resource.pageletId(' + id + ') + "\\"' + attrs + '>";',
-            'if(_ext._resource.pageletStart(' + id + ')){',
-            '_output += _ext._resource.pageletEnd((function(){var _output="";' + code + ';return _output})());',
-            '}',
-            '_output += "</' + tag + '>";'
-        ].join('');
-        //console.log(code);
-        return code;
+        var ret = [];
+        if(tag){
+            attrs = attrs.length ? ' ' + attrs.join(' ').replace(/["\\]/g, '\\$&') : '';
+            ret.push('_output += "<' + tag + ' data-pagelet=\\"" + _ext._resource.pageletId(' + id + ') + "\\"' + attrs + '>";');
+        } else {
+            ret.push('_output += "<!-- pagelet[" + _ext._resource.pageletId(' + id + ') + "] start -->";');
+        }
+        ret.push('if(_ext._resource.pageletStart(' + id + ')){');
+        ret.push('_output += _ext._resource.pageletEnd((function(){var _output="";' + code + ';return _output})());');
+        ret.push('}');
+        if(tag){
+            ret.push('_output += "</' + tag + '>";');
+        } else {
+            ret.push('_output += "<!-- pagelet[" + _ext._resource.pageletId(' + id + ') + "] end -->";');
+        }
+        ret = ret.join('');
+        //console.log(ret);
+        return ret;
     } else {
         throw new Error('missing pagelet $id.');
     }

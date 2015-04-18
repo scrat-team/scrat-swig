@@ -18,6 +18,9 @@ swig.middleware = function(options){
         var pagelets = req.get('X-Pagelets');
         if(pagelets){
             res.set('Content-Type', 'application/json');
+            res.set('Cache-Control', 'no-cache, no-store');
+            res.set('Pragma', 'no-cache');
+            res.set('Expires', 0);
             res.locals._pagelets = pagelets;
         }
         next();
