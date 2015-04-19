@@ -19,7 +19,7 @@ exports.compile = function (compiler, args, content, parents, options, blockName
         var ret = [];
         if(tag){
             attrs = attrs.length ? ' ' + attrs.join(' ').replace(/["\\]/g, '\\$&') : '';
-            ret.push('_output += "<' + tag + ' data-pagelet=\\"" + _ext._resource.pageletId(' + id + ') + "\\"' + attrs + '>";');
+            ret.push('_output += "<' + tag + attrs + ' data-pagelet=\\"" + _ext._resource.pageletId(' + id + ') + "\\">";');
         } else {
             ret.push('_output += "<!-- pagelet[" + _ext._resource.pageletId(' + id + ') + "] start -->";');
         }

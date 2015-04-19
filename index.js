@@ -14,7 +14,12 @@ swig.middleware = function(options){
     if(typeof options.comboURI === 'function'){
         Resource.prototype.comboURI = options.comboURI;
     }
+    if(options.logger){
+        Resource.setLogger(options.logger);
+    }
     return function(req, res, next){
+        res.locals._query = req._query;
+        res.locals._body = req._body;
         var pagelets = req.get('X-Pagelets');
         if(pagelets){
             res.set('Content-Type', 'application/json');
