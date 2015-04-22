@@ -20,9 +20,16 @@ describe('Tags:', function () {
       swig.setExtension('_resource', resourceInstance);
     });
 
-    it('render title', function (){
+    it.only('render title', function (){
       expect(swig.render('{% title "bar"%}')).to.equal('<title>bar</title>');
       sinon.assert.calledWith(spy, 'bar');
+      spy.reset();
+
+      expect(swig.render('{% title %}', {locals: {title: 'bar'}})).to.equal('<title>bar</title>');
+      sinon.assert.calledWith(spy, 'bar');
+      spy.reset();
+
+      expect(swig.render('{% title %}')).to.equal('<title></title>');
       spy.reset();
 
       expect(swig.render('{% title foo %}', {locals: {foo: "bar"}})).to.equal('<title>bar</title>');

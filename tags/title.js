@@ -9,10 +9,7 @@
  */
 
 exports.compile = function(compiler, args, content, parents, options, blockName) {
-  var code = '';
-  if(args.length > 0){
-    code = '_output +=' + args.join('');
-  }
+  var code = '_output +=' + (args.length > 0 ? args.join('') : '_ctx.title || ""');
   return ';_output += "<title>" + _ext._resource.pageletTitle((function(){var _output="";' + code + ';return _output})()) + "</title>";';
 };
 
