@@ -4,14 +4,18 @@
   "description": "Extensions of swig for scrat",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha --reporter spec test"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/scrat-team/scrat-swig.git"
   },
   "keywords": [
-    "pagelet", "quickling", "scrat", "swig", "fis"
+    "pagelet",
+    "quickling",
+    "scrat",
+    "swig",
+    "fis"
   ],
   "dependencies": {
     "swig": "1.4.2"
@@ -21,5 +25,10 @@
   "bugs": {
     "url": "https://github.com/scrat-team/scrat-swig/issues"
   },
-  "homepage": "https://github.com/scrat-team/scrat-swig"
+  "homepage": "https://github.com/scrat-team/scrat-swig",
+  "devDependencies": {
+    "expect.js": "^0.3.1",
+    "mocha": "^2.2.4",
+    "sinon": "^1.14.1"
+  }
 }
