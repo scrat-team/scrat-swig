@@ -38,9 +38,9 @@ describe('Tags: ' + tagName, function(){
         .to.equal('<body diabled class="test" style="test" data-attr="app" checked><h1>test</h1>' + resourceInstance.JS_HOOK + '</body>');
   });
 
-  it('render body', function (){
-    expect(swig.render('{% body class=["test1", clz] %}<h1>test</h1>{% endbody%}', {locals: {clz: 'test'}}))
-      .to.equal('<body class="test1 test"><h1>test</h1>' + resourceInstance.JS_HOOK + '</body>');
+  it('render multi', function (){
+    expect(swig.render('{% body class=["test1", clz] style="test" %}<h1>test</h1>{% endbody%}', {locals: {clz: 'test'}}))
+      .to.equal('<body class="test1 test" style="test"><h1>test</h1>' + resourceInstance.JS_HOOK + '</body>');
 
     expect(swig.render('{% body class=[foo.bar, "test1"] %}<h1>test</h1>{% endbody%}', {locals: {clz: 'test', foo: {bar: 'test'}}}))
       .to.equal('<body class="test test1"><h1>test</h1>' + resourceInstance.JS_HOOK + '</body>');
@@ -51,7 +51,7 @@ describe('Tags: ' + tagName, function(){
     expect(swig.render('{% body class=[clz] %}<h1>test</h1>{% endbody%}', {locals: {clz: 'test'}}))
         .to.equal('<body class="test"><h1>test</h1>' + resourceInstance.JS_HOOK + '</body>');
 
-    expect(swig.render('{% body class=[a] %}<h1>test</h1>{% endbody%}', {locals: {clz: 'test'}}))
+    expect(swig.render('{% body class=[a]%}<h1>test</h1>{% endbody%}', {locals: {clz: 'test'}}))
         .to.equal('<body class=""><h1>test</h1>' + resourceInstance.JS_HOOK + '</body>');
   });
 });

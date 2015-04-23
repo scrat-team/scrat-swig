@@ -31,7 +31,7 @@ exports.compile = function (compiler, args, content, parents, options, blockName
   var code = '_output += "<body' + (attrs.length ? ' ' + attrs.join(' ') : '') + '>";'
       + compiler(content, parents, options, blockName)
       + '_output += _ext._resource.JS_HOOK + "</body>";';
-  console.log(code)
+  //console.log(code);
   return code;
 };
 
