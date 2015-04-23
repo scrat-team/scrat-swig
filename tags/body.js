@@ -5,38 +5,35 @@
  */
 
 exports.compile = function (compiler, args, content, parents, options, blockName) {
-  var attrs = [];
-
-  args.forEach(function (arg) {
-    if (arg.key) {
-      if (arg.key === "attrs") {
-        attrs.push(arg.value);
-      } else {
-        attrs.push(arg.key + "=" + arg.raw);
-      }
+  var attrs = args.map(function(arg){
+    var result;
+    if(arg.type === 'var'){
+      result =  arg.key + '=\\"" + _ctx.' + arg.value + ' + "\\"'
+    }else if(arg.type === 'string'){
+      result = arg.key + "=" + arg.value.replace(/["\\]/g, '\\$&');
+    }else if(arg.type === 'attr'){
+      result = arg.key;
     }
+    return result;
   });
+
   var code = compiler(content, parents, options, blockName);
-  attrs = attrs.length ? ' ' + attrs.join(' ').replace(/["\\]/g, '\\$&') : '';
-  return '_output += "<body' + attrs + '>";' + code + '_output += _ext._resource.JS_HOOK + "</body>";';
+  return '_output += "<body' + (attrs.length ? ' ' + attrs.join(' ') : '') + '>";' + code + '_output += _ext._resource.JS_HOOK + "</body>";';
 };
 
 exports.parse = function (str, line, parser, types, stack, opts) {
-  var key = '',
-    assign;
+  var key = '';
+  var assign = false;
 
   parser.on(types.STRING, function (token) {
     if (key && assign) {
-      var raw = token.match;
-      var val = raw.substring(1, raw.length - 1);
-
       this.out.push({
         key: key,
-        value: val,
-        raw: raw
+        value: token.match,
+        type: 'string'
       });
-
-      key = assign = '';
+      key = '';
+      assign = false;
     }
   });
 
@@ -48,7 +45,6 @@ exports.parse = function (str, line, parser, types, stack, opts) {
 
   parser.on(types.NUMBER, function (token) {
     var val = token.match;
-
     if (val && /^\-/.test(val) && key) {
       key += val;
     }
@@ -62,10 +58,42 @@ exports.parse = function (str, line, parser, types, stack, opts) {
     }
   });
 
+  parser.on(types.WHITESPACE, function(token){
+    if(key){
+      this.out.push({
+        key: key,
+        value: key,
+        type: 'attr'
+      });
+      key = '';
+      assign = false;
+    }
+  });
+
   parser.on(types.VAR, function (token) {
-    key += token.match;
-    assign = false;
-    return false;
+    if (key && assign) {
+      this.out.push({
+        key: key,
+        value: token.match,
+        type: 'var'
+      });
+      key = '';
+      assign = false;
+    }else{
+      key += token.match;
+    }
+  });
+
+  parser.on('end', function(){
+    if(key){
+      this.out.push({
+        key: key,
+        value: key,
+        type: 'attr'
+      });
+      key = '';
+      assign = false;
+    }
   });
 
   return true;
