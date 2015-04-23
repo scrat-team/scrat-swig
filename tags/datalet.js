@@ -4,26 +4,26 @@
  * @alias datalet
  *
  * @example
- * {% set foo = "anything!" %}
+ * {% datalet foo = "anything!" %}
  * {{ foo }}
  * // => anything!
  *
  * @example
  * // index = 2;
- * {% set bar = 1 %}
- * {% set bar += index|default(3) %}
+ * {% datalet bar = 1 %}
+ * {% datalet bar += index|default(3) %}
  * // => 3
  *
  * @example
  * // foods = {};
  * // food = 'chili';
- * {% set foods[food] = "con queso" %}
+ * {% datalet foods[food] = "con queso" %}
  * {{ foods.chili }}
  * // => con queso
  *
  * @example
  * // foods = { chili: 'chili con queso' }
- * {% set foods.chili = "guatamalan insanity pepper" %}
+ * {% datalet foods.chili = "guatamalan insanity pepper" %}
  * {{ foods.chili }}
  * // => guatamalan insanity pepper
  *
