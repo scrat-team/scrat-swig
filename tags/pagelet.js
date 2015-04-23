@@ -7,7 +7,11 @@ exports.compile = function (compiler, args, content, parents, options, blockName
         if(arg.key === '$id'){
             id = arg.val;
         } else if(arg.key === '$tag') {
-            tag = arg.val;
+            if(/^['"]none['"]$/i.test(arg.val)){
+                tag = false;
+            } else {
+                tag = arg.val;
+            }
         } else {
             return parser.genAttr(arg.key, arg.val);
         }
