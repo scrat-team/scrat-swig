@@ -1,32 +1,53 @@
 /**
  * @alias body
+ *
  * @example
- * {%body%} something the page partial {%/body%}
+ * {% body class=[foo, "ss"] style="test" data-id=foo %} something the page partial {% endbody %}
  */
 
 exports.compile = function (compiler, args, content, parents, options, blockName) {
   var attrs = args.map(function(arg){
     var result;
     if(arg.type === 'var'){
-      result =  arg.key + '=\\"" + _ctx.' + arg.value + ' + "\\"'
+      result = arg.key + '=\\"" + (_ctx.' + arg.value + '||"") + "\\"'
     }else if(arg.type === 'string'){
       result = arg.key + "=" + arg.value.replace(/["\\]/g, '\\$&');
     }else if(arg.type === 'attr'){
       result = arg.key;
+    }else if(arg.type === 'multi'){
+      result = arg.key + '=\\""+';
+      result += arg.value.map(function(item){
+        if(item.type === 'var'){
+          return '(_ctx.' + item.value + '||"")';
+        }else if(item.type === 'string'){
+          return item.value ;
+        }
+      }).join('+ " " + ');
+      result += '+"\\"';
     }
     return result;
   });
 
-  var code = compiler(content, parents, options, blockName);
-  return '_output += "<body' + (attrs.length ? ' ' + attrs.join(' ') : '') + '>";' + code + '_output += _ext._resource.JS_HOOK + "</body>";';
+  var code = '_output += "<body' + (attrs.length ? ' ' + attrs.join(' ') : '') + '>";'
+      + compiler(content, parents, options, blockName)
+      + '_output += _ext._resource.JS_HOOK + "</body>";';
+  console.log(code)
+  return code;
 };
 
 exports.parse = function (str, line, parser, types, stack, opts) {
   var key = '';
   var assign = false;
+  var multi = false;
+  var arr = [];
 
   parser.on(types.STRING, function (token) {
-    if (key && assign) {
+    if(multi){
+      arr.push({
+        value: token.match,
+        type: 'string'
+      })
+    }else if (key && assign) {
       this.out.push({
         key: key,
         value: token.match,
@@ -35,6 +56,40 @@ exports.parse = function (str, line, parser, types, stack, opts) {
       key = '';
       assign = false;
     }
+  });
+
+  parser.on(types.VAR, function (token) {
+    if(multi){
+      arr.push({
+        value: token.match,
+        type: 'var'
+      })
+    }else if (key && assign) {
+      this.out.push({
+        key: key,
+        value: token.match,
+        type: 'var'
+      });
+      key = '';
+      assign = false;
+    }else{
+      key += token.match;
+    }
+  });
+
+  parser.on(types.BRACKETOPEN, function(token){
+    multi = true;
+  });
+
+  parser.on(types.BRACKETCLOSE, function(token){
+    this.out.push({
+      key: key,
+      value: arr,
+      type: 'multi'
+    });
+    key = '';
+    assign = false;
+    multi = false;
   });
 
   parser.on(types.ASSIGNMENT, function (token) {
@@ -58,8 +113,14 @@ exports.parse = function (str, line, parser, types, stack, opts) {
     }
   });
 
+  parser.on(types.COMMA, function(token){
+    if(multi && arr.length){
+
+    }
+  });
+
   parser.on(types.WHITESPACE, function(token){
-    if(key){
+    if(key && !multi){
       this.out.push({
         key: key,
         value: key,
@@ -67,20 +128,6 @@ exports.parse = function (str, line, parser, types, stack, opts) {
       });
       key = '';
       assign = false;
-    }
-  });
-
-  parser.on(types.VAR, function (token) {
-    if (key && assign) {
-      this.out.push({
-        key: key,
-        value: token.match,
-        type: 'var'
-      });
-      key = '';
-      assign = false;
-    }else{
-      key += token.match;
     }
   });
 
