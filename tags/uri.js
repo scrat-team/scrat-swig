@@ -8,4 +8,4 @@ exports.parse = function() {
     return true;
 };
 
-exports.ends = true;
+exports.ends = false;

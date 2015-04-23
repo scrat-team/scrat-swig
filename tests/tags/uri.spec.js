@@ -19,7 +19,7 @@ describe('Tags: ' + tagName, function(){
   });
 
   it('render uri', function(){
-    expect(swig.render('{% uri "/test" %}{% enduri %}')).to.equal('/public/test');
+    expect(swig.render('{% uri "/test" %}')).to.equal('/public/test');
     sinon.assert.calledWith(spy, '/test');
     spy.reset();
   });

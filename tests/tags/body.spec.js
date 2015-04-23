@@ -21,11 +21,13 @@ describe('Tags: ' + tagName, function(){
   });
 
   it('render attr', function(){
-    expect(swig.render('{% body diabled %}<h1>test</h1>{% endbody %}')).to.equal('<body diabled><h1>test</h1>' + resourceInstance.JS_HOOK + '</body>');
+    expect(swig.render('{% body disabled %}<h1>test</h1>{% endbody %}')).to.equal('<body disabled><h1>test</h1>' + resourceInstance.JS_HOOK + '</body>');
+    expect(swig.render('{% body disa-bled %}<h1>test</h1>{% endbody %}')).to.equal('<body disa-bled><h1>test</h1>' + resourceInstance.JS_HOOK + '</body>');
+    expect(swig.render('{% body disa--bled %}<h1>test</h1>{% endbody %}')).to.equal('<body disa--bled><h1>test</h1>' + resourceInstance.JS_HOOK + '</body>');
   });
 
   it('render string', function(){
-    expect(swig.render('{% body class="test" %}<h1>test</h1>{% endbody %}')).to.equal('<body class="test"><h1>test</h1>' + resourceInstance.JS_HOOK + '</body>');
+    expect(swig.render('{% body class--3-a-a-a0="test" %}<h1>test</h1>{% endbody %}')).to.equal('<body class--3-a-a-a0="test"><h1>test</h1>' + resourceInstance.JS_HOOK + '</body>');
   });
 
   it('render var', function(){
@@ -34,8 +36,8 @@ describe('Tags: ' + tagName, function(){
   });
 
   it('render all', function(){
-    expect(swig.render('{% body diabled class=clz style=foo.bar data-attr="app" checked%}<h1>test</h1>{% endbody %}', {locals: {clz: 'test', foo: {bar: 'test'}}}))
-        .to.equal('<body diabled class="test" style="test" data-attr="app" checked><h1>test</h1>' + resourceInstance.JS_HOOK + '</body>');
+    expect(swig.render('{% body disabled class=clz style=foo.bar data-attr="app" checked%}<h1>test</h1>{% endbody %}', {locals: {clz: 'test', foo: {bar: 'test'}}}))
+        .to.equal('<body disabled class="test" style="test" data-attr="app" checked><h1>test</h1>' + resourceInstance.JS_HOOK + '</body>');
   });
 
   it('render body', function (){
@@ -54,5 +56,10 @@ describe('Tags: ' + tagName, function(){
     expect(swig.render('{% body class=[a] %}<h1>test</h1>{% endbody%}', {locals: {clz: 'test'}}))
         .to.equal('<body class=""><h1>test</h1>' + resourceInstance.JS_HOOK + '</body>');
   });
+  it('error', function(){
+      expect(function(){
+          swig.render('{% body class=["test1", clz %}<h1>test</h1>{% endbody%}', {locals: {clz: 'test'}})
+      }).to.throwError(/Invail state on line 1\./);
+  })
 });
 
