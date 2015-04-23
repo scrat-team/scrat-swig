@@ -27,7 +27,7 @@ describe('Tags: ' + tagName, function(){
   });
 
   it('render string', function(){
-    expect(swig.render('{% body class--3-a-a-a0="test" %}<h1>test</h1>{% endbody %}')).to.equal('<body class--3-a-a-a0="test"><h1>test</h1>' + resourceInstance.JS_HOOK + '</body>');
+    expect(swig.render('{% body class-3-a-a-a0="test" %}<h1>test</h1>{% endbody %}')).to.equal('<body class-3-a-a-a0="test"><h1>test</h1>' + resourceInstance.JS_HOOK + '</body>');
   });
 
   it('render var', function(){
