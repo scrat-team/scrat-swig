@@ -1,0 +1,43 @@
+{
+    "combo": false,
+    "comboPattern": "/co??%s",
+    "res": {
+        "components/nav/nav.js": {
+            "uri": "c/nav/nav.js",
+            "type": "js",
+            "deps": [
+                "views/jquery/jquery.js",
+                "components/nav/nav.css"
+            ]
+        },
+        "components/nav/nav.css": {
+            "uri": "c/nav/nav.css",
+            "type": "css",
+            "deps": [
+                "views/reset/reset.css"
+            ]
+        },
+        "components/foo/foo.tpl": {
+            "uri": "c/foo/foo.tpl",
+            "type": "tpl",
+            "deps": [
+                "nav"
+            ]
+        },
+        "views/jquery/jquery.js": {
+            "uri": "v/jquery/jquery.js",
+            "type": "js"
+        },
+        "views/reset/reset.css": {
+            "uri": "v/reset/reset.css",
+            "type": "css"
+        },
+        "views/index/index.tpl": {
+            "uri": "views/test.tpl",
+            "type": "tpl",
+            "deps": [
+                "foo"
+            ]
+        }
+    }
+}

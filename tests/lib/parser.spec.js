@@ -8,7 +8,7 @@ describe('Lib: parser', function(){
         return ';_output += "<div"' + parser.attr(args) + '+">";' + compiler(content, parents, options, blockName) + ';' + '_output += "</div>";';
     };
 
-    swig.setTag('test', parser.parse, compileFn, true,  false);
+    swig.setTag('test', parser.parse(), compileFn, true,  false);
 
     var context = {
         locals: {
@@ -65,7 +65,7 @@ describe('Lib: parser', function(){
     //bad cases
     describe('bad cases', function() {
         var badCases = [
-            ['class=', /Invalid state.*/i],
+            ['class=', /Invalid lexical end.*/i],
             ['class=["test" foo ', /Unexpected token.*/i]
         ];
 

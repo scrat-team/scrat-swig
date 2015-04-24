@@ -11,5 +11,5 @@ exports.compile = function (compiler, args, content, parents, options, blockName
            compiler(content, parents, options, blockName) + ';' +
            '_output += _ext._resource.JS_HOOK + "</body>";';
 };
-exports.parse = parser.parse;
+exports.parse = parser.parse();
 exports.ends = true;

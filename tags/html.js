@@ -14,5 +14,5 @@ exports.compile = function(compiler, args, content, parents, options, blockName)
            ';_output += "</html>";' +
            ';_output = _ext._resource.render(_output);';
 };
-exports.parse = parser.parse;
+exports.parse = parser.parse();
 exports.ends = true;

@@ -37,5 +37,5 @@ exports.compile = function (compiler, args, content, parents, options, blockName
         throw new Error('missing pagelet $id.');
     }
 };
-exports.parse = parser.parse;
+exports.parse = parser.parse('$id');
 exports.ends = true;

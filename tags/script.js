@@ -5,5 +5,7 @@ exports.compile = function(compiler, args, content, parents, options, blockName)
             compiler(content, parents, options, blockName) +
            ';return _output; })());';
 };
-exports.parse = function() { return true; };
+exports.parse = function() {
+    return true;
+};
 exports.ends = true;

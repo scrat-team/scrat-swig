@@ -5,5 +5,5 @@ exports.compile = function(compiler, args, content, parents, options, blockName)
            compiler(content, parents, options, blockName) +
            ';_output += _ext._resource.CSS_HOOK + "</head>";';
 };
-exports.parse = parser.parse;
+exports.parse = parser.parse();
 exports.ends = true;
