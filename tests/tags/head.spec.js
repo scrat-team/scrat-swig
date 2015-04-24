@@ -7,17 +7,26 @@ var tag = require('../../tags/' + tagName);
 swig.setTag(tagName, tag.parse, tag.compile, tag.ends, tag.blockLevel || false);
 
 describe('Tags: ' + tagName, function(){
-  var spy;
-  var resourceInstance = {
-    'CSS_HOOK': '<!-- CSS_HOOK_STRING -->'
-  };
+    var spy, context, resourceInstance;
+    before(function(){
+        swig.setTag(tagName, tag.parse, tag.compile, tag.ends, tag.blockLevel || false);
+        context = {
+            locals: {
+                clz: 'test',
+                foo: {
+                    bar: 'bar'
+                }
+            }
+        };
+        resourceInstance = {
+            'JS_HOOK': '<!--SCRAT_JS_HOOK-->',
+            'CSS_HOOK': '<!--SCRAT_CSS_HOOK-->'
+        };
+        swig.setExtension('_resource', resourceInstance);
+    });
 
-  beforeEach(function(){
-    swig.setExtension('_resource', resourceInstance);
-  });
-
-  it('render CSS_HOOK', function(){
-    expect(swig.render('{% head %}<meta charset="utf-8"/>{% endhead %}')).to.equal('<head><meta charset="utf-8"/>' + resourceInstance.CSS_HOOK + '</head>');
-  });
+    it('render CSS_HOOK', function(){
+        expect(swig.render('{% head %}<meta charset="utf-8"/>{% endhead %}')).to.equal('<head><meta charset="utf-8"/>' + resourceInstance.CSS_HOOK + '</head>');
+    });
 });
 

@@ -4,33 +4,45 @@ var sinon = require('sinon');
 
 var tagName = 'title';
 var tag = require('../../tags/' + tagName);
-swig.setTag(tagName, tag.parse, tag.compile, tag.ends, tag.blockLevel || false);
 
 describe('Tags: ' + tagName, function(){
-  var resourceInstance = {
-    pageletTitle: function(title){
-      return title;
-    }
-  };
-  var spy = sinon.spy(resourceInstance, "pageletTitle");
+    var spy, context, resourceInstance;
 
-  beforeEach(function(){
-    spy.reset();
-    swig.setExtension('_resource', resourceInstance);
-  });
+    before(function(){
+        swig.setTag(tagName, tag.parse, tag.compile, tag.ends, tag.blockLevel || false);
+        context = {
+            locals: {
+                clz: 'test',
+                foo: {
+                    bar: 'bar'
+                }
+            }
+        };
+        resourceInstance = {
+            pageletTitle: function(title){
+              return title;
+            }
+        };
+        swig.setExtension('_resource', resourceInstance);
+        spy = sinon.spy(resourceInstance, "pageletTitle");
+    });
 
-  it('render title', function (){
-    expect(swig.render('{% title %}bar{% endtitle %}')).to.equal('<title>bar</title>');
-    sinon.assert.calledWith(spy, 'bar');
-    spy.reset();
+    beforeEach(function(){
+        spy.reset();
+    });
 
-    expect(swig.render('{% title %}{{foo}}{% endtitle %}', {locals: {foo: "bar"}})).to.equal('<title>bar</title>');
-    sinon.assert.calledWith(spy, 'bar');
-    spy.reset();
+    it('render title', function (){
+        expect(swig.render('{% title %}bar{% endtitle %}')).to.equal('<title>bar</title>');
+        sinon.assert.calledWith(spy, 'bar');
+        spy.reset();
 
-    expect(swig.render('{% title %}test-{{foo}}{% endtitle %}', {locals: {foo: "bar"}})).to.equal('<title>test-bar</title>');
-    sinon.assert.calledWith(spy, 'test-bar');
-    spy.reset();
-  });
+        expect(swig.render('{% title %}{{foo.bar}}{% endtitle %}', context)).to.equal('<title>bar</title>');
+        sinon.assert.calledWith(spy, 'bar');
+        spy.reset();
+
+        expect(swig.render('{% title %}test-{{foo.bar}}{% endtitle %}', context)).to.equal('<title>test-bar</title>');
+        sinon.assert.calledWith(spy, 'test-bar');
+        spy.reset();
+    });
 });
 

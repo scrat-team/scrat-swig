@@ -4,24 +4,33 @@ var sinon = require('sinon');
 
 var tagName = 'script';
 var tag = require('../../tags/' + tagName);
-swig.setTag(tagName, tag.parse, tag.compile, tag.ends, tag.blockLevel || false);
 
 describe('Tags: ' + tagName, function(){
-  var resourceInstance = {
-    addScript: function(input){
-      return input;
-    }
-  };
-  var spy = sinon.spy(resourceInstance, "addScript");
+    var spy, context, resourceInstance;
 
-  beforeEach(function(){
-    swig.setExtension('_resource', resourceInstance);
-  });
+    before(function(){
+        swig.setTag(tagName, tag.parse, tag.compile, tag.ends, tag.blockLevel || false);
+        context = {
+            locals: {
+                clz: 'test',
+                foo: {
+                    bar: 'bar'
+                }
+            }
+        };
+        resourceInstance = {
+            addScript: function(input){
+                return input;
+            }
+        };
+        swig.setExtension('_resource', resourceInstance);
+        spy = sinon.spy(resourceInstance, "addScript");
+    });
 
-  it('addScript', function(){
-    expect(swig.render('{% script %}var a = "b";{% endscript %}')).to.equal('');
-    sinon.assert.calledWith(spy, 'var a = "b";');
-    spy.reset();
-  });
+    it('addScript', function(){
+        expect(swig.render('{% script %}var a = "b" + {{clz}};{% endscript %}', context)).to.equal('');
+        sinon.assert.calledWith(spy, 'var a = "b" + test;');
+        spy.reset();
+    });
 });
 

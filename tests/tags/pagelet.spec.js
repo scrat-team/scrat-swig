@@ -56,6 +56,7 @@ describe('Tags: pagelet', function(){
         tpl = '{% html %}{% pagelet $id="foo" %}foo{% endpagelet %}{% pagelet $id="bar" %}bar{% endpagelet %}{% endhtml %}';
         expect(swig.render(tpl, {locals:{_pagelets:'foo,x'}})).to.equal('{"html":{"foo":"foo","x":""},"data":{},"js":[],"css":[],"title":"","script":[]}');
     });
+
     it('scripts', function(){
         var tpl = '{% html %}{% pagelet $id="main" %}hello{% endpagelet %}{% script %}world{% endscript %}{% endhtml %}';
         expect(swig.render(tpl, {locals:{_pagelets:'main'}})).to.equal('{"html":{"main":"hello"},"data":{},"js":[],"css":[],"title":"","script":[]}');
