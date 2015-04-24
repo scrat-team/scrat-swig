@@ -14,7 +14,8 @@ describe('Lib: parser', function(){
         locals: {
             clz: 'test',
             foo: {
-                bar: 'bar'
+                bar: 'bar',
+                html: '<img src=>'
             }
         }
     };
@@ -23,6 +24,7 @@ describe('Lib: parser', function(){
     describe('test cases', function() {
       var testCases = [
           ['class="test"', 'class="test"'],
+          ['class=foo.html', 'class="&lt;img src=&gt;"'],
           ['class=clz', 'class="test"'],
           ['class=foo.bar', 'class="bar"'],
           ['data-attr=clz', 'data-attr="test"'],
@@ -39,6 +41,25 @@ describe('Lib: parser', function(){
               expect(swig.render(c, context)).to.be.equal('<div ' + item[1] + '>content</div>');
           });
       });
+    });
+
+    //escape cases
+    describe('escape cases', function() {
+        var testCases = [
+            ['class="<"', 'class="&lt;"'],
+            ['class=">"', 'class="&gt;"'],
+            ['class="&"', 'class="&amp;"'],
+            ['class="\'"', 'class="&#39;"'],
+            //['class=""', 'class="&quot;"'],
+            ['class=foo.html', 'class="&lt;img src=&gt;"']
+        ];
+
+        testCases.forEach(function (item) {
+            it('should parse: ' + item[0], function () {
+                var c = '{%test ' + item[0] + '%}content{% endtest %}';
+                expect(swig.render(c, context)).to.be.equal('<div ' + item[1] + '>content</div>');
+            });
+        });
     });
 
     //bad cases
