@@ -11,6 +11,9 @@ describe('Tags: pagelet', function(){
         var tpl = '{% html %}{% pagelet $id="main" %}hello{% endpagelet %}{% endhtml %}';
         expect(swig.render(tpl, {})).to.equal('<html><div data-pagelet="main">hello</div></html>');
 
+        tpl = '{% html %}{% pagelet $id="main" %}hello{% pagelet $id="sub" %}world{% endpagelet %}{% endpagelet %}{% endhtml %}';
+        expect(swig.render(tpl, {locals:{}})).to.equal('<html><div data-pagelet="main">hello<div data-pagelet="main.sub">world</div></div></html>');
+
         tpl = '{% html %}{% pagelet $id=main %}hello{% endpagelet %}{% endhtml %}';
         expect(swig.render(tpl, {locals:{main: 'main'}})).to.equal('<html><div data-pagelet="main">hello</div></html>');
 

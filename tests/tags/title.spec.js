@@ -31,7 +31,7 @@ describe('Tags: ' + tagName, function(){
         spy.reset();
     });
 
-    it('render title', function (){
+    it('should render title', function (){
         expect(swig.render('{% title %}bar{% endtitle %}')).to.equal('<title>bar</title>');
         sinon.assert.calledWith(spy, 'bar');
         spy.reset();

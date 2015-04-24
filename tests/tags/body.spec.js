@@ -25,11 +25,11 @@ describe('Tags: ' + tagName, function(){
         swig.setExtension('_resource', resourceInstance);
     });
 
-    it('render JS_HOOK', function(){
+    it('should render JS_HOOK', function(){
         expect(swig.render('{% body %}<h1>test</h1>{% endbody %}')).to.equal('<body><h1>test</h1>' + resourceInstance.JS_HOOK + '</body>');
     });
 
-    it('render attr', function(){
+    it('should render attr', function(){
         expect(swig.render('{% body class=["test1", clz] style="test" data-src=foo.bar disabed%}<h1>test</h1>{% endbody%}', context))
             .to.equal('<body class="test1 test" style="test" data-src="bar" disabed><h1>test</h1>' + resourceInstance.JS_HOOK + '</body>');
     });

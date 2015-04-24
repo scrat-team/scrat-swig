@@ -27,7 +27,7 @@ describe('Tags: ' + tagName, function(){
         spy = sinon.spy(resourceInstance, "uri");
     });
 
-    it('render uri', function(){
+    it('should render real uri', function(){
         expect(swig.render('{% uri "/test" %}')).to.equal('/public/test');
         sinon.assert.calledWith(spy, '/test');
         spy.reset();

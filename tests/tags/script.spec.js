@@ -27,8 +27,8 @@ describe('Tags: ' + tagName, function(){
         spy = sinon.spy(resourceInstance, "addScript");
     });
 
-    it('addScript', function(){
-        expect(swig.render('{% script %}var a = "b" + {{clz}};{% endscript %}', context)).to.equal('');
+    it('should collect script', function(){
+        expect(swig.render('{% script %}var a = "b\" + {{clz}};{% endscript %}', context)).to.equal('');
         sinon.assert.calledWith(spy, 'var a = "b" + test;');
         spy.reset();
     });

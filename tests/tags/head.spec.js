@@ -25,7 +25,7 @@ describe('Tags: ' + tagName, function(){
         swig.setExtension('_resource', resourceInstance);
     });
 
-    it('render CSS_HOOK', function(){
+    it('should render CSS_HOOK', function(){
         expect(swig.render('{% head %}<meta charset="utf-8"/>{% endhead %}')).to.equal('<head><meta charset="utf-8"/>' + resourceInstance.CSS_HOOK + '</head>');
     });
 });

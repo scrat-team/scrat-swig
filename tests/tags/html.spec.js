@@ -28,17 +28,17 @@ describe('Tags: ' + tagName, function(){
         swig.setExtension('_map', {});
     });
 
-    it('remove JSHOOK', function(){
+    it('should replace JSHOOK', function(){
         expect(swig.render('{% html %}<h1>test'+JS_HOOK+'</h1>{% endhtml %}')).to.equal('<html><h1>test<script>pagelet.init(0,"/co??%s",[""]);</script>\n</h1></html>');
         expect(swig.render('{% html %}<h1>'+JS_HOOK+'test'+JS_HOOK+'</h1>{% endhtml %}')).to.equal('<html><h1>'+JS_HOOK+'test<script>pagelet.init(0,"/co??%s",[""]);</script>\n</h1></html>');
     });
 
-    it('remove CSSHOOK', function(){
+    it('should replace CSSHOOK', function(){
         expect(swig.render('{% html %}<h1>test'+CSS_HOOK+'</h1>{% endhtml %}')).to.equal('<html><h1>test</h1></html>');
         expect(swig.render('{% html %}<h1>'+CSS_HOOK+'test'+CSS_HOOK+'</h1>{% endhtml %}')).to.equal('<html><h1>test'+CSS_HOOK+'</h1></html>');
     });
 
-    it('render attr', function(){
+    it('should render attr', function(){
         expect(swig.render('{% html class=["test1", clz] style="test" data-src=foo.bar disabed%}<h1>test</h1>{% endhtml %}', context))
             .to.equal('<html class="test1 test" style="test" data-src="bar" disabed><h1>test</h1></html>');
     });
