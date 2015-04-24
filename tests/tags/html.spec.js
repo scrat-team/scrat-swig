@@ -65,7 +65,7 @@ describe('Tags: ' + tagName, function(){
     it('error', function(){
         expect(function(){
             swig.render('{% html class=["test1", clz %}<h1>test</h1>{% endhtml%}', {locals: {clz: 'test'}})
-        }).to.throwError(/Invail state on line 1\./);
+        }).to.throwError(/Invalid state on line 1\./);
     })
 });
 
