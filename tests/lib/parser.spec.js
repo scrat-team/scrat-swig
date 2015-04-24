@@ -14,9 +14,10 @@ describe('Lib: parser', function(){
         locals: {
             clz: 'test',
             foo: {
-                bar: 'bar',
-                html: '<img src=>'
-            }
+                bar: 'bar'
+            },
+            html: '<img src=>',
+            jsonStr: JSON.stringify({a: 'b'})
         }
     };
 
@@ -24,7 +25,6 @@ describe('Lib: parser', function(){
     describe('test cases', function() {
       var testCases = [
           ['class="test"', 'class="test"'],
-          ['class=foo.html', 'class="&lt;img src=&gt;"'],
           ['class=clz', 'class="test"'],
           ['class=foo.bar', 'class="bar"'],
           ['data-attr=clz', 'data-attr="test"'],
@@ -50,8 +50,8 @@ describe('Lib: parser', function(){
             ['class=">"', 'class="&gt;"'],
             ['class="&"', 'class="&amp;"'],
             ['class="\'"', 'class="&#39;"'],
-            //['class=""', 'class="&quot;"'],
-            ['class=foo.html', 'class="&lt;img src=&gt;"']
+            ['class=jsonStr', 'class="{&quot;a&quot;:&quot;b&quot;}"'],
+            ['class=html', 'class="&lt;img src=&gt;"']
         ];
 
         testCases.forEach(function (item) {
