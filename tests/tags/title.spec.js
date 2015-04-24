@@ -5,10 +5,10 @@ var sinon = require('sinon');
 var tagName = 'title';
 var tag = require('../../tags/' + tagName);
 
-describe('Tags: ' + tagName, function(){
+describe('Tags: ' + tagName, function () {
     var spy, context, resourceInstance;
 
-    before(function(){
+    before(function () {
         swig.setTag(tagName, tag.parse, tag.compile, tag.ends, tag.blockLevel || false);
         context = {
             locals: {
@@ -19,19 +19,19 @@ describe('Tags: ' + tagName, function(){
             }
         };
         resourceInstance = {
-            pageletTitle: function(title){
-              return title;
+            pageletTitle: function (title) {
+                return title;
             }
         };
         swig.setExtension('_resource', resourceInstance);
         spy = sinon.spy(resourceInstance, "pageletTitle");
     });
 
-    beforeEach(function(){
+    beforeEach(function () {
         spy.reset();
     });
 
-    it('should render title', function (){
+    it('should render title', function () {
         expect(swig.render('{% title %}bar{% endtitle %}')).to.equal('<title>bar</title>');
         sinon.assert.calledWith(spy, 'bar');
         spy.reset();

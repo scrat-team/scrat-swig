@@ -5,10 +5,10 @@ var sinon = require('sinon');
 var tagName = 'uri';
 var tag = require('../../tags/' + tagName);
 
-describe('Tags: ' + tagName, function(){
+describe('Tags: ' + tagName, function () {
     var spy, context, resourceInstance;
 
-    before(function(){
+    before(function () {
         swig.setTag(tagName, tag.parse, tag.compile, tag.ends, tag.blockLevel || false);
         context = {
             locals: {
@@ -19,7 +19,7 @@ describe('Tags: ' + tagName, function(){
             }
         };
         resourceInstance = {
-            uri: function(input){
+            uri: function (input) {
                 return '/public' + input;
             }
         };
@@ -27,7 +27,7 @@ describe('Tags: ' + tagName, function(){
         spy = sinon.spy(resourceInstance, "uri");
     });
 
-    it('should render real uri', function(){
+    it('should render real uri', function () {
         expect(swig.render('{% uri "/test" %}')).to.equal('/public/test');
         sinon.assert.calledWith(spy, '/test');
         spy.reset();
