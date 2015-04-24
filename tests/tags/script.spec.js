@@ -5,10 +5,10 @@ var sinon = require('sinon');
 var tagName = 'script';
 var tag = require('../../tags/' + tagName);
 
-describe('Tags: ' + tagName, function(){
+describe('Tags: ' + tagName, function () {
     var spy, context, resourceInstance;
 
-    before(function(){
+    before(function () {
         swig.setTag(tagName, tag.parse, tag.compile, tag.ends, tag.blockLevel || false);
         context = {
             locals: {
@@ -19,7 +19,7 @@ describe('Tags: ' + tagName, function(){
             }
         };
         resourceInstance = {
-            addScript: function(input){
+            addScript: function (input) {
                 return input;
             }
         };
@@ -27,7 +27,7 @@ describe('Tags: ' + tagName, function(){
         spy = sinon.spy(resourceInstance, "addScript");
     });
 
-    it('should collect script', function(){
+    it('should collect script', function () {
         expect(swig.render('{% script %}var a = "b\" + {{clz}};{% endscript %}', context)).to.equal('');
         sinon.assert.calledWith(spy, 'var a = "b" + test;');
         spy.reset();
