@@ -11,9 +11,7 @@ swig.middleware = function(options){
     swig.setExtension('Resource', Resource);
     var map = options.cacheMap ? Resource.loadOptions(options.map) : options.map;
     swig.setExtension('_map', map);
-    var root = (options.root || process.cwd())
-        .replace(/\/views\/?$/, '');    // historical problems
-    swig.setExtension('_root', root + '/index.tpl');
+    Resource.setRoot(options.root || process.cwd());
     if(typeof options.comboURI === 'function'){
         Resource.prototype.comboURI = options.comboURI;
     }

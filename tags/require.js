@@ -12,7 +12,7 @@ exports.compile = function (compiler, args) {
         }
     });
     ctx = '{' + ctx.join(',') + '}';
-    return ';_output += _ext._resource.include(' + file + ', {resolveFrom:_ext._root}, _utils.extend({}, _ctx, ' + ctx + '));';
+    return ';_output += _ext._resource.include(' + file + ',_utils.extend({},_ctx,' + ctx + '));';
 };
 exports.parse = parser.parse('$id');
 exports.ends = false;
