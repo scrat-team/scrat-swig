@@ -21,8 +21,8 @@ swig.middleware = function(options){
         Resource.setLogger(options.logger);
     }
     return function(req, res, next){
-        res.locals._query = req._query;
-        res.locals._body = req._body;
+        res.locals._query = req.query;
+        res.locals._body = req.body;
         var pagelets = req.get('X-Pagelets');
         if(pagelets){
             res.set('Content-Type', 'application/json');
