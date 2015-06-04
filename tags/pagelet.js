@@ -30,6 +30,8 @@ exports.compile = function (compiler, args, content, parents, options, blockName
         var code = '';
         if (tag) {
             code += ';_output+="<"+' + tag + attrs + '+" data-pagelet=\\""+_ext._resource.pageletId(' + id + ')+"\\">";';
+        } else {
+            code += ';_output+="<!-- pagelet["+_ext._resource.pageletId(' + id + ')+"] start -->";';
         }
         code += 'if(_ext._resource.pageletStart(' + id + ')){' +
                 '_output+=_ext._resource.pageletEnd((function(){var _output="";' +
@@ -37,6 +39,8 @@ exports.compile = function (compiler, args, content, parents, options, blockName
                 ';return _output})());}';
         if (tag) {
             code += '_output+="</"+' + tag + '+">";';
+        } else {
+            code += '_output+="<!-- pagelet[" + _ext._resource.pageletId(' + id + ') + "] end -->";';
         }
         return code;
     } else {
