@@ -13,10 +13,11 @@
 .bar {
     color: red;
 }
-</style><script>(window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||function(f){setTimeout(f,500)})(function(d,h,l){d=document;h=d.head||d.getElementsByTagName("head")[0];["/co??c/foo/foo.css"].forEach(function(i){l=d.createElement("link");l.rel="stylesheet";l.href=i;h.appendChild(l)})})</script></head>
+</style></head>
     <body>
         <h1>I am bar</h1>
-        
+        <link rel="stylesheet" href="/co??c/foo/foo.css" data-defer>
+<script>(function(d,l,h,i,n,e){l=d.getElementsByTagName("link");h=d.head||d.getElementsByTagName("head")[0];for(i=0,n=l.length;i<n;i++){e=l[i];if(e.hasAttribute("data-defer"))h.appendChild(e);}})(document);</script>
         <h1>foo</h1>
 <a href="http://www.baidu.com">baidu</a>
 <span>foo</span>
