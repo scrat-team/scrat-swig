@@ -313,7 +313,7 @@ http://paularmstrong.github.io/swig/docs/api/#setDefaults
 ### ATF
 
 * 功能：收集位于`ATF`标签以上的css资源，并内嵌到主文档的head标签中。只会收集使用`require`标签加载的css资源，并不会收集link标签的css资源。用于加快首屏渲染速度的优化。
-* 闭合：YES
+* 闭合：NO
 * 参数：无
 * 示例：
     
