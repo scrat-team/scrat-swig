@@ -309,3 +309,45 @@ http://paularmstrong.github.io/swig/docs/api/#setDefaults
         "script": [ ... ]           // script收集
     }
     ```
+
+### ATF
+
+* 功能：收集位于`ATF`标签以上的css资源，并内嵌到主文档的head标签中。只会收集使用`require`标签加载的css资源，并不会收集link标签的css资源。用于加快首屏渲染速度的优化。
+* 闭合：YES
+* 参数：无
+* 示例：
+    
+    ```twig
+    {% html%}
+        {% head %}
+            ...
+        {% endhead %}
+        {% body %}
+            ...
+            {% require $id="header" %}
+            {% require $id="./index.css" %}
+            {% ATF %}
+            {% require $id="footer" %}
+            ...
+        {% endbody %}
+    {% endhtml %}
+    ```
+    
+    渲染后的html：
+    
+    ```html
+    <html>
+        <head>
+            ...
+            <style>
+                .header {...}
+                .index {...}
+            </style>
+        </head>
+        <body>
+            ...
+            <link rel="stylesheet" href="/co??c/footer/footer.css" data-defer>
+            ...
+        </body>
+    </html>
+    ```
