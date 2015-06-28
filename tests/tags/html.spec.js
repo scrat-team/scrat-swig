@@ -29,8 +29,8 @@ describe('Tags: ' + tagName, function () {
     });
 
     it('should replace JSHOOK', function () {
-        expect(swig.render('{% html %}<h1>test' + JS_HOOK + '</h1>{% endhtml %}')).to.equal('<html><h1>test<script>pagelet.init(0,"/co??%s",[""]);</script>\n</h1></html>');
-        expect(swig.render('{% html %}<h1>' + JS_HOOK + 'test' + JS_HOOK + '</h1>{% endhtml %}')).to.equal('<html><h1>' + JS_HOOK + 'test<script>pagelet.init(0,"/co??%s",[""]);</script>\n</h1></html>');
+        expect(swig.render('{% html %}<h1>test' + JS_HOOK + '</h1>{% endhtml %}')).to.equal('<html><h1>test<script>pagelet.init(0,"/co??%s",[""],"0000000");</script>\n</h1></html>');
+        expect(swig.render('{% html %}<h1>' + JS_HOOK + 'test' + JS_HOOK + '</h1>{% endhtml %}')).to.equal('<html><h1>' + JS_HOOK + 'test<script>pagelet.init(0,"/co??%s",[""],"0000000");</script>\n</h1></html>');
     });
 
     it('should replace CSSHOOK', function () {

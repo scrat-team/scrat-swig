@@ -1,6 +1,7 @@
 {
     "combo": false,
     "comboPattern": "/co??%s",
+    "hash": "f0ab3c",
     "res": {
         "components/nav/nav.js": {
             "uri": "c/nav/nav.js",
