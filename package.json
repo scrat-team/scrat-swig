@@ -1,6 +1,6 @@
 {
   "name": "scrat-swig",
-  "version": "0.4.6",
+  "version": "0.4.7",
   "description": "Extensions of swig for scrat",
   "main": "index.js",
   "scripts": {
