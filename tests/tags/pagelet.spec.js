@@ -39,32 +39,32 @@ describe('Tags: pagelet', function(){
     it('use pagelet', function(){
 
         var tpl = '{% html %}{% pagelet $id="main" %}hello{% endpagelet %}{% endhtml %}';
-        expect(swig.render(tpl, {locals:{_pagelets:'main'}})).to.equal('{"html":{"main":"hello"},"data":{},"js":[],"css":[],"title":"","script":[]}');
+        expect(swig.render(tpl, {locals:{_pagelets:'main'}})).to.equal('{"html":{"main":"hello"},"data":{},"js":[],"css":[],"title":"","script":[],"hash":"0000000"}');
 
         tpl = '{% html %}{% pagelet $id="main" %}hello{% endpagelet %}{% endhtml %}';
-        expect(swig.render(tpl, {locals:{_pagelets:'x'}})).to.equal('{"html":{"x":""},"data":{},"js":[],"css":[],"title":"","script":[]}');
+        expect(swig.render(tpl, {locals:{_pagelets:'x'}})).to.equal('{"html":{"x":""},"data":{},"js":[],"css":[],"title":"","script":[],"hash":"0000000"}');
 
         tpl = '{% html %}{% pagelet $id="main" %}hello{% pagelet $id="foo" %}world{% endpagelet %}ok{% endpagelet %}{% endhtml %}';
-        expect(swig.render(tpl, {locals:{_pagelets:'main'}})).to.equal('{"html":{"main":"hello<div data-pagelet=\\"main.foo\\">world</div>ok"},"data":{},"js":[],"css":[],"title":"","script":[]}');
+        expect(swig.render(tpl, {locals:{_pagelets:'main'}})).to.equal('{"html":{"main":"hello<div data-pagelet=\\"main.foo\\">world</div>ok"},"data":{},"js":[],"css":[],"title":"","script":[],"hash":"0000000"}');
 
         tpl = '{% html %}{% pagelet $id="main" %}hello{% pagelet $id="foo" %}world{% endpagelet %}ok{% endpagelet %}{% endhtml %}';
-        expect(swig.render(tpl, {locals:{_pagelets:'main.foo'}})).to.equal('{"html":{"main.foo":"world"},"data":{},"js":[],"css":[],"title":"","script":[]}');
+        expect(swig.render(tpl, {locals:{_pagelets:'main.foo'}})).to.equal('{"html":{"main.foo":"world"},"data":{},"js":[],"css":[],"title":"","script":[],"hash":"0000000"}');
 
         tpl = '{% html %}{% pagelet $id="foo" %}foo{% endpagelet %}{% pagelet $id="bar" %}bar{% endpagelet %}{% endhtml %}';
-        expect(swig.render(tpl, {locals:{_pagelets:'foo,bar'}})).to.equal('{"html":{"foo":"foo","bar":"bar"},"data":{},"js":[],"css":[],"title":"","script":[]}');
+        expect(swig.render(tpl, {locals:{_pagelets:'foo,bar'}})).to.equal('{"html":{"foo":"foo","bar":"bar"},"data":{},"js":[],"css":[],"title":"","script":[],"hash":"0000000"}');
 
         tpl = '{% html %}{% pagelet $id="foo" %}foo{% endpagelet %}{% pagelet $id="bar" %}bar{% endpagelet %}{% endhtml %}';
-        expect(swig.render(tpl, {locals:{_pagelets:'foo,   bar'}})).to.equal('{"html":{"foo":"foo","bar":"bar"},"data":{},"js":[],"css":[],"title":"","script":[]}');
+        expect(swig.render(tpl, {locals:{_pagelets:'foo,   bar'}})).to.equal('{"html":{"foo":"foo","bar":"bar"},"data":{},"js":[],"css":[],"title":"","script":[],"hash":"0000000"}');
 
         tpl = '{% html %}{% pagelet $id="foo" %}foo{% endpagelet %}{% pagelet $id="bar" %}bar{% endpagelet %}{% endhtml %}';
-        expect(swig.render(tpl, {locals:{_pagelets:'foo,x'}})).to.equal('{"html":{"foo":"foo","x":""},"data":{},"js":[],"css":[],"title":"","script":[]}');
+        expect(swig.render(tpl, {locals:{_pagelets:'foo,x'}})).to.equal('{"html":{"foo":"foo","x":""},"data":{},"js":[],"css":[],"title":"","script":[],"hash":"0000000"}');
     });
 
     it('scripts', function(){
         var tpl = '{% html %}{% pagelet $id="main" %}hello{% endpagelet %}{% script %}world{% endscript %}{% endhtml %}';
-        expect(swig.render(tpl, {locals:{_pagelets:'main'}})).to.equal('{"html":{"main":"hello"},"data":{},"js":[],"css":[],"title":"","script":[]}');
+        expect(swig.render(tpl, {locals:{_pagelets:'main'}})).to.equal('{"html":{"main":"hello"},"data":{},"js":[],"css":[],"title":"","script":[],"hash":"0000000"}');
 
         tpl = '{% html %}{% pagelet $id="main" %}hello{% script %}world{% endscript %}{% endpagelet %}{% endhtml %}';
-        expect(swig.render(tpl, {locals:{_pagelets:'main'}})).to.equal('{"html":{"main":"hello"},"data":{},"js":[],"css":[],"title":"","script":["world"]}');
+        expect(swig.render(tpl, {locals:{_pagelets:'main'}})).to.equal('{"html":{"main":"hello"},"data":{},"js":[],"css":[],"title":"","script":["world"],"hash":"0000000"}');
     });
 });
