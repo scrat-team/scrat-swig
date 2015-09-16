@@ -1,0 +1,9 @@
+{
+    "href": "http://www.baidu.com",
+    "deep": {
+        "foo": "foo"
+    },
+    "domain": {
+        "in": "http://cdn.com/"
+    }
+}

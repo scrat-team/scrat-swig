@@ -10,7 +10,7 @@ describe('Tags: ' + tag, function(){
         });
     });
     var root = path.resolve(__dirname, '../cases/' + tag);
-    var cases = [ 'general', 'ATF', 'ATF_combo' ];
+    var cases = [ 'general', 'ATF', 'ATF_combo', 'ATF_combo_domain' ];
     var load = function(label, callback){
         var locals = {};
         var r = root + '/' + label;

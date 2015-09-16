@@ -9,8 +9,18 @@
 
 var parser = require('../lib/parser');
 exports.compile = function (compiler, args, content, parents, options, blockName) {
+    var cdn = '';
+    args = args.filter(function(arg){
+        var keep = true;
+        if(arg.key === 'cdn'){
+            keep = false;
+            cdn = arg.val;
+        }
+        return keep;
+    });
     return ';_ext._resource = new _ext.Resource(_ext._map);' +
             ';_ext._resource.usePagelet(_ctx._pagelets);' +
+            ';_ext._resource.setDomain(' + cdn + ');' +
             ';_output += "<html"' + parser.attr(args) + '+">";' +
             compiler(content, parents, options, blockName) +
             ';_output += "</html>";' +
