@@ -2,6 +2,9 @@
 
 scrat后端渲染组件化开发模式通过扩展 [swig](http://paularmstrong.github.io/swig/) 模板引擎实现了组件资源管理方案。
 
+[![NPM Version](https://img.shields.io/npm/v/scrat-swig.svg?style=flat)](https://www.npmjs.org/package/scrat-swig)
+[![Build Status](https://img.shields.io/travis/scrat-team/scrat-swig.svg?style=flat)](https://travis-ci.org/scrat-team/scrat-swig)
+
 ## 用法
 
 ```js
