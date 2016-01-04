@@ -6,7 +6,7 @@ var Resource = require('./lib/resource.js');
 var tagNames = ['body', 'head', 'html', 'pagelet', 'require', 'script', 'uri', 'title', 'datalet', 'ATF'];
 
 tagNames.forEach(function extendTags(tag) {
-  var t = require('./tags/' + tag);
+  var t = require('./lib/tags/' + tag);
   swig.setTag(tag, t.parse, t.compile, t.ends, t.blockLevel || false);
 });
 

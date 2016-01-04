@@ -1,6 +1,6 @@
 'use strict';
 
-var swig = require('../../index');
+var swig = require('../../../index');
 var expect = require('expect.js');
 var path = require('path');
 var fs = require('fs');
@@ -11,7 +11,7 @@ describe('Tags: ' + tag, function() {
       map: {}
     });
   });
-  var root = path.resolve(__dirname, '../cases/' + tag);
+  var root = path.resolve(__dirname, '../../fixtures/' + tag);
   var cases = ['general', 'ATF', 'ATF_combo', 'ATF_combo_domain'];
   var load = function(label) {
     var locals = {};
