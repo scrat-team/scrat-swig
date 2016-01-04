@@ -12,10 +12,10 @@
     "ci-travis": "npm run lint && TEST_REPORTER=spec NODE_ENV=test node ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha --report lcovonly -- --recursive test --bail"
   },
   "dependencies": {
+    "swig": "1.4.2"
   },
   "devDependencies": {
     "eslint": "^1.10.3",
-    "swig": "1.4.2",
     "expect.js": "^0.3.1",
     "mocha": "^2.2.4",
     "mockjs": "^0.1.4",
