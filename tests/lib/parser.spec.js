@@ -16,6 +16,7 @@ describe('Lib: parser', function () {
             foo: {
                 bar: 'bar'
             },
+            bool: false,
             html: '<img src=>',
             jsonStr: JSON.stringify({a: 'b'})
         }
@@ -24,6 +25,8 @@ describe('Lib: parser', function () {
     //test cases
     describe('test cases', function () {
         var testCases = [
+            ['class=true', 'class=true'],
+            ['class=bool', 'class=false'],
             ['class="test"', 'class="test"'],
             ['class=clz', 'class="test"'],
             ['class=foo.bar', 'class="bar"'],
@@ -31,6 +34,7 @@ describe('Lib: parser', function () {
             ['data-attr-1-a=clz', 'data-attr-1-a="test"'],
             ['disabled', 'disabled'],
             ['class=["test1", clz]', 'class="test1 test"'],
+            ['class=["test1", clz, false, bool]', 'class="test1 test false false"'],
             ['class=["test1"] style=clz', 'class="test1" style="test"'],
             ['class=["test1"] style=clz checked', 'class="test1" style="test" checked']
         ];
