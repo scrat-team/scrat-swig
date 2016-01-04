@@ -4,9 +4,9 @@ var swig = require('swig');
 var expect = require('expect.js');
 
 var tagName = 'html';
-var tag = require('../../tags/' + tagName);
+var tag = require('../../../lib/tags/' + tagName);
 
-var Resource = require('../../lib/resource');
+var Resource = require('../../../lib/resource');
 var JS_HOOK = Resource.prototype.JS_HOOK;
 var CSS_HOOK = Resource.prototype.CSS_HOOK;
 

@@ -1,7 +1,7 @@
 'use strict';
 
-var swig = require('../../index');
 var expect = require('expect.js');
+var swig = require('../../../index');
 
 describe('Tags: pagelet', function() {
   beforeEach(function() {

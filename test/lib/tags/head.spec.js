@@ -4,7 +4,7 @@ var swig = require('swig');
 var expect = require('expect.js');
 
 var tagName = 'head';
-var tag = require('../../tags/' + tagName);
+var tag = require('../../../lib/tags/' + tagName);
 swig.setTag(tagName, tag.parse, tag.compile, tag.ends, tag.blockLevel || false);
 
 describe('Tags: ' + tagName, function() {

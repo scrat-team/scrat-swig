@@ -4,7 +4,7 @@ var expect = require('expect.js');
 var sinon = require('sinon');
 
 var tagName = 'title';
-var tag = require('../../tags/' + tagName);
+var tag = require('../../../lib/tags/' + tagName);
 
 describe('Tags: ' + tagName, function() {
   var spy;
