@@ -1,0 +1,31 @@
+---
+extends: airbnb/legacy
+
+env:
+  mocha: true
+
+ecmaFeatures:
+  generators: true
+  modules: false
+
+rules:
+  # errors
+  comma-dangle: 0
+
+  # strict
+  strict: [2, global]
+
+  # style
+  eol-last: 0
+
+  space-before-function-paren: [2, never]
+
+  no-else-return: 0
+
+  vars-on-top: 0
+
+  no-param-reassign: 0
+
+  # dot-notation: 0
+
+  func-names: 0

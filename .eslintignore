@@ -1,0 +1,4 @@
+lib/plugins/**/app/proxy
+test/fixtures
+test/benchmark
+
