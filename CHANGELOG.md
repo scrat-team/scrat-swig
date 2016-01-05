@@ -1,4 +1,11 @@
 
+0.5.1 / 2016-01-05
+==================
+
+  * adjust folder
+  * deps: still deps swig at index.js
+  * deps: remove deps on swig
+
 0.5.0 / 2016-01-04
 ==================
 
