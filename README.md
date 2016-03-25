@@ -37,7 +37,7 @@ http://paularmstrong.github.io/swig/docs/api/#setDefaults
 * 闭合：NO
 * 参数：
     * $id：字符串或模板变量。要引用的组件id或相对路径
-    * $_props：模块内的局部变量，只在当前模块上下文生效
+    * __props：模块内的局部变量，只在当前模块上下文生效
 * 示例：
     
     ```twig
@@ -50,15 +50,15 @@ http://paularmstrong.github.io/swig/docs/api/#setDefaults
     
     ```twig
     // index.tpl
-    {% require $id="header" $_title='tile' golbal='golbal' %}
+    {% require $id="header" __title='tile' golbal='golbal' %}
     
     // header.tpl
-    {{ $_title }}   // title
+    {{ __title }}   // title
     {{ golbal }}    // golbal
     {% require $id="nav" %}
     
     // nav.tpl
-    {{ $_title }}   // null
+    {{ __title }}   // null
     {{ golbal }}    // golbal
     ```
 
