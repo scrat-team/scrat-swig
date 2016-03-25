@@ -5,6 +5,6 @@
         {% title %}test{% endtitle %}
     {% endhead %}
     {% body %}
-        {% require $id="foo" title="foo" href=href deep=deep.foo %}
+        {% require $id="foo" title="foo" $_href=href deep=deep.foo  %}
     {% endbody %}
 {% endhtml %}
