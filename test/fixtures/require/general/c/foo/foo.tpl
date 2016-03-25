@@ -1,5 +1,5 @@
 <h1>{{ title }}</h1>
-<a href="{{ $_href }}">baidu</a>
+<a href="{{ __href }}">baidu</a>
 <span>{{ deep }}</span>
 
-{% require $id="sub" $_subHref=$_href %}
+{% require $id="sub" __subHref=__href %}
