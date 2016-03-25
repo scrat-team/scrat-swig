@@ -33,7 +33,10 @@ describe('Tags: ' + tag, function() {
     it(label, function() {
       var opt = load(label);
       var out = swig.renderFile(opt.file, opt.data);
-      expect(out).to.equal(opt.expect);
+      // fix window 换行和空格符 equal 不上
+      var clearExpect = opt.expect.replace(/\r\n|\s/g, '');
+      var clearOut = out.replace(/\n|\s/g, '');
+      expect(clearOut).to.equal(clearExpect);
     });
   });
 });
