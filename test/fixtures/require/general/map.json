@@ -21,8 +21,13 @@
             "uri": "c/foo/foo.tpl",
             "type": "tpl",
             "deps": [
-                "nav"
+                "nav",
+                "sub"
             ]
+        },
+        "components/sub/sub.tpl": {
+            "uri": "c/sub/sub.tpl",
+            "type": "tpl"
         },
         "views/jquery/jquery.js": {
             "uri": "v/jquery/jquery.js",
