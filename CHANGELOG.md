@@ -1,4 +1,16 @@
 
+0.6.0 / 2016-03-27
+==================
+
+  * test(): 修改测试用例
+  * doc(README.md): 修改文档
+  * feat(lib/tags/require.js):  $$ swig 自身编译报错，改成 `__` 前缀
+  * feat(lib/tags/require.js): 修改局部变量的前缀 `$_` => `$$`
+  * doc(README.md): 添加require局部标签的说明
+  * test(fixtures/require/general): 添加require标签 传入局部变量 $_  的测试
+  * fix(test/lib/tags/require): fix window testcase bug
+  * feat(lib/tags/require.js): require标签支持以 $_ 开头传入的变量只在模块内生效
+
 0.5.3 / 2016-01-11
 ==================
 
