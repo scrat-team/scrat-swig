@@ -12,7 +12,6 @@ describe('Tags: ' + tag, function() {
     });
   });
   var root = path.resolve(__dirname, '../../fixtures/' + tag);
-  //var cases = ['urlparam_combo_overflow'];
   var cases = ['general', 'urlparam_combo_overflow', 'ATF', 'ATF_combo', 'ATF_combo_domain'];
   var load = function(label) {
     var locals = {};
