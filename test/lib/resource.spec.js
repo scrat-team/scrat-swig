@@ -28,14 +28,14 @@ describe('Lib: resource', function() {
     });
 
     it('should return only one url', function() {
-      var result = resource.genComboURI(mockData.scripts, mockData.mapping);
-      expect(result.length).to.equal(134);
+      var result = resource.genComboURI(mockData.scripts);
+      expect(result.length).to.equal(1);
     });
 
     it('should return multi url', function() {
-      resource.maxUrlLength = 90;
-      var result = resource.genComboURI(mockData.scripts, mockData.mapping);
-      expect(result.length).to.equal(134);
+      var maxUrlLength = 100;
+      var result = resource.genComboURI(mockData.scripts, maxUrlLength);
+      expect(result.length).to.equal(2);
     });
 
     // it('should return group', function() {
