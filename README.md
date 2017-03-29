@@ -70,7 +70,7 @@ http://paularmstrong.github.io/swig/docs/api/#setDefaults
     * $id：字符串或模板变量。要引用的组件id或相对路径
 * 示例：
 
-    ``` xml
+    ``` twig
     {% if nation == "russia" %}
         {% css $id="widget/article/content/content.russia.css" %}
     {% endif %}
@@ -87,7 +87,7 @@ http://paularmstrong.github.io/swig/docs/api/#setDefaults
 
 ### html
 
-* 功能：替代原生的 ``<html>`` 标签包裹页面主体部分，用于实现资源url输出时替换页面占位
+* 功能：替代原生的 `<html>` 标签包裹页面主体部分，用于实现资源url输出时替换页面占位
 * 闭合：YES
 * 参数：
     * cdn:指定pagelet加载时所用的域名,可以是字符串字面量,也可以是模板变量
