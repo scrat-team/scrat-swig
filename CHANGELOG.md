@@ -1,4 +1,12 @@
 
+0.8.0 / 2017-03-29
+==================
+
+  * feat(lib/tags/css.js): add `css` tag support
+  * feat(lib/lib/resource.js): 增加includeCSS()以支持css标签
+  * test(fixtures/css/general): 添加css标签测试用例
+  * doc(README.md): 添加css标签说明
+
 0.7.1 / 2016-05-17
 ==================
 
