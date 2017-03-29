@@ -39,7 +39,7 @@ http://paularmstrong.github.io/swig/docs/api/#setDefaults
     * $id：字符串或模板变量。要引用的组件id或相对路径
     * __props：模块内的局部变量，只在当前模块上下文生效
 * 示例：
-    
+
     ```twig
     {% require $id="header" %}    {# 组件id #}
     {% require $id="./lib.js" %}  {# 工程路径 #}
@@ -47,38 +47,61 @@ http://paularmstrong.github.io/swig/docs/api/#setDefaults
         {% require $id=val %}     {# 模板变量 #}
     {% endfor %}
     ```
-    
+
     ```twig
     // index.tpl
     {% require $id="header" __title='tile' golbal='golbal' %}
-    
+
     // header.tpl
     {{ __title }}   // title
     {{ golbal }}    // golbal
     {% require $id="nav" %}
-    
+
     // nav.tpl
     {{ __title }}   // null
     {{ golbal }}    // golbal
     ```
 
+### css
+
+* 功能：动态引用样式，例如某些组件在某些条件下需要单独加载额外样式
+* 闭合：NO
+* 参数：
+    * $id：字符串或模板变量。要引用的组件id或相对路径
+* 示例：
+
+    ``` twig
+    {% if nation == "russia" %}
+        {% css $id="widget/article/content/content.russia.css" %}
+    {% endif %}
+    ```
+
+    渲染后的html：
+
+    ``` html
+    ...
+    <link href="/public/c/widget/article/content/content.russia_86ab01f.css">
+    ...
+    ```
+
+
 ### html
 
-* 功能：替代原生的 ``<html>`` 标签包裹页面主体部分，用于实现资源url输出时替换页面占位
+* 功能：替代原生的 `<html>` 标签包裹页面主体部分，用于实现资源url输出时替换页面占位
 * 闭合：YES
 * 参数：
     * cdn:指定pagelet加载时所用的域名,可以是字符串字面量,也可以是模板变量
     * 任何其他参数都将转换为输出的html标签的属性。
 * 示例：
-    
+
     ```twig
     {% html class="abc" data-value="bcd" %}
     ...
     {% endhtml %}
     ```
-    
+
     渲染后的html：
-    
+
     ```html
     <html class="abc" data-value="bcd">
     ...
@@ -91,7 +114,7 @@ http://paularmstrong.github.io/swig/docs/api/#setDefaults
 * 闭合：YES
 * 参数：任何参数都将转换为输出的head标签的属性。
 * 示例：
-    
+
     ```twig
     {% html%}
         {% head class="abc" data-xxx="bcd" %}
@@ -100,9 +123,9 @@ http://paularmstrong.github.io/swig/docs/api/#setDefaults
         ...
     {% endhtml %}
     ```
-    
+
     渲染后的html：
-    
+
     ```html
     <html>
         <head class="abc" data-xxx="bcd">
@@ -118,7 +141,7 @@ http://paularmstrong.github.io/swig/docs/api/#setDefaults
 * 闭合：YES
 * 参数：任何参数都将转换为输出的body标签的属性。
 * 示例：
-    
+
     ```twig
     {% html%}
         {% head %}
@@ -129,9 +152,9 @@ http://paularmstrong.github.io/swig/docs/api/#setDefaults
         {% endbody %}
     {% endhtml %}
     ```
-    
+
     渲染后的html：
-    
+
     ```html
     <html>
         <head>
@@ -149,7 +172,7 @@ http://paularmstrong.github.io/swig/docs/api/#setDefaults
 * 闭合：YES
 * 参数：无
 * 示例：
-    
+
     ```twig
     {% html%}
         {% head %}
@@ -166,9 +189,9 @@ http://paularmstrong.github.io/swig/docs/api/#setDefaults
         {% endbody %}
     {% endhtml %}
     ```
-    
+
     渲染后的html：
-    
+
     ```html
     <html>
         <head>
@@ -187,7 +210,7 @@ http://paularmstrong.github.io/swig/docs/api/#setDefaults
         </body>
     </html>
     ```
-    
+
 * 注意：在body闭合标签之前，js输出的顺序是：
     1. require标签加载的外链js
     1. script标签收集的内联js
@@ -202,7 +225,7 @@ http://paularmstrong.github.io/swig/docs/api/#setDefaults
     * $tag：字符串|模板变量|"none"。要生成的占位标签的标签名，可以不指定，默认是 ``div``。如果指定为none，框架会输出一个注释来标注pagelet的范围。
     * 任何其他参数都将转换为输出的pagelet占位标签的属性。
 * 示例：
-    
+
     ```twig
     {% html%}
         {% head %}
@@ -226,9 +249,9 @@ http://paularmstrong.github.io/swig/docs/api/#setDefaults
         {% endbody %}
     {% endhtml %}
     ```
-    
+
     渲染后的html：
-    
+
     ```html
     <html>
         <head>
@@ -258,7 +281,7 @@ http://paularmstrong.github.io/swig/docs/api/#setDefaults
 * 闭合：YES
 * 参数：无
 * 示例：
-    
+
     ```twig
     {% html%}
         {% head %}
@@ -270,9 +293,9 @@ http://paularmstrong.github.io/swig/docs/api/#setDefaults
         {% endbody %}
     {% endhtml %}
     ```
-    
+
     渲染后的html：
-    
+
     ```html
     <html>
         <head>
@@ -284,14 +307,14 @@ http://paularmstrong.github.io/swig/docs/api/#setDefaults
         </body>
     </html>
     ```
-    
+
 ### datalet
 
 * 功能：在pagelet区域内收集模板数据将来在quickling加载时可以传递给前端框架。
 * 闭合：NO
 * 参数：请参考swig的 [set标签](http://paularmstrong.github.io/swig/docs/tags/#set) 用法
 * 示例：
-    
+
     ```twig
     {% html%}
         {% head %}
@@ -312,9 +335,9 @@ http://paularmstrong.github.io/swig/docs/api/#setDefaults
         {% endbody %}
     {% endhtml %}
     ```
-    
+
     假设前端获取main.list的pagelet数据：
-    
+
     ```js
     {
         "title": "列表页 - 第5页",   // title收集
@@ -336,7 +359,7 @@ http://paularmstrong.github.io/swig/docs/api/#setDefaults
 * 闭合：NO
 * 参数：无
 * 示例：
-    
+
     ```twig
     {% html%}
         {% head %}
@@ -352,9 +375,9 @@ http://paularmstrong.github.io/swig/docs/api/#setDefaults
         {% endbody %}
     {% endhtml %}
     ```
-    
+
     渲染后的html：
-    
+
     ```html
     <html>
         <head>
