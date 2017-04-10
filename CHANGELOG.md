@@ -1,4 +1,12 @@
 
+0.8.1 / 2017-04-10
+==================
+
+  * fix: support egg view dir
+  * fix: css tag include bug
+  * test: add test cases for #9a162fda992e6d6355406c00eb069030d8989dfb
+
+
 0.8.0 / 2017-03-29
 ==================
 
