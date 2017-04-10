@@ -2,6 +2,6 @@
 <a href="{{ __href }}">baidu</a>
 <span>{{ deep }}</span>
 
-{% css $id="h1.red.css" %}
+{% css $id="foo/h1.red.css" %}
 
 {% require $id="sub" __subHref=__href %}
