@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint lib test index.js",
+    "lint-fix": "eslint --fix .",
     "test": "npm run lint && npm run test-local",
     "test-local": "TEST_REPORTER=spec NODE_ENV=test ./node_modules/.bin/_mocha --recursive test --bail",
     "cov": "TEST_REPORTER=spec NODE_ENV=test node ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha -- --recursive test --bail",
