@@ -1,4 +1,11 @@
 
+0.9.0 / 2017-04-10
+==================
+
+  * fix css tag (not ATF mode) bug & add test cases
+  * style:eslint
+  * fix:support egg view dir
+
 0.8.1 / 2017-04-10
 ==================
 
