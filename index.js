@@ -6,17 +6,18 @@ var Resource = require('./lib/resource.js');
 
 var tagNames = ['body', 'head', 'html', 'pagelet', 'require', 'css', 'script', 'uri', 'title', 'datalet', 'ATF'];
 
-tagNames.forEach(function extendTags(tag) {
-  var t = require('./lib/tags/' + tag);
-  swig.setTag(tag, t.parse, t.compile, t.ends, t.blockLevel || false);
-});
-
 module.exports = exports = swig;
 exports.tagNames = tagNames;
 exports.Resource = Resource;
 exports.filters = exports.filters || filters;
 
 exports.configure = function(options) {
+  swig = options.swig || swig;
+  options.swig = undefined;
+  tagNames.forEach(function extendTags(tag) {
+    var t = require('./lib/tags/' + tag);
+    swig.setTag(tag, t.parse, t.compile, t.ends, t.blockLevel || false);
+  });
   var map = options.cacheMap ? Resource.loadOptions(options.map) : options.map;
   swig.setExtension('Resource', Resource);
   swig.setExtension('_map', map);
