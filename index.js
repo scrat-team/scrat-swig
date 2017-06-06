@@ -1,10 +1,10 @@
 'use strict';
 
-var swig = require('swig');
-var filters = require('swig/lib/filters');
-var Resource = require('./lib/resource.js');
+let swig = require('swig');
+const filters = require('swig/lib/filters');
+const Resource = require('./lib/resource.js');
 
-var tagNames = ['body', 'head', 'html', 'pagelet', 'require', 'css', 'script', 'uri', 'title', 'datalet', 'ATF'];
+const tagNames = [ 'body', 'head', 'html', 'pagelet', 'require', 'css', 'script', 'uri', 'title', 'datalet', 'ATF' ];
 
 module.exports = exports = swig;
 exports.tagNames = tagNames;
@@ -15,10 +15,10 @@ exports.configure = function(options) {
   swig = options.swig || swig;
   options.swig = undefined;
   tagNames.forEach(function extendTags(tag) {
-    var t = require('./lib/tags/' + tag);
+    const t = require('./lib/tags/' + tag);
     swig.setTag(tag, t.parse, t.compile, t.ends, t.blockLevel || false);
   });
-  var map = options.cacheMap ? Resource.loadOptions(options.map) : options.map;
+  const map = options.cacheMap ? Resource.loadOptions(options.map) : options.map;
   swig.setExtension('Resource', Resource);
   swig.setExtension('_map', map);
   Resource.setRoot(options.root || process.cwd());
@@ -33,7 +33,7 @@ exports.configure = function(options) {
 exports.middleware = function createSwigMiddleware(options) {
   this.configure(options);
   return function swigMiddleware(req, res, next) {
-    var pagelets = req.get('X-Pagelets');
+    const pagelets = req.get('X-Pagelets');
     res.locals._query = req.query;
     res.locals._body = req.body;
     if (pagelets) {

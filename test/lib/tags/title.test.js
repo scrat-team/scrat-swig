@@ -1,15 +1,15 @@
 'use strict';
-var swig = require('swig');
-var expect = require('expect.js');
-var sinon = require('sinon');
+const swig = require('swig');
+const assert = require('assert');
+const sinon = require('sinon');
 
-var tagName = 'title';
-var tag = require('../../../lib/tags/' + tagName);
+const tagName = 'title';
+const tag = require('../../../lib/tags/' + tagName);
 
 describe('Tags: ' + tagName, function() {
-  var spy;
-  var context;
-  var resourceInstance;
+  let spy;
+  let context;
+  let resourceInstance;
 
   before(function() {
     swig.setTag(tagName, tag.parse, tag.compile, tag.ends, tag.blockLevel || false);
@@ -17,14 +17,14 @@ describe('Tags: ' + tagName, function() {
       locals: {
         clz: 'test',
         foo: {
-          bar: 'bar'
-        }
-      }
+          bar: 'bar',
+        },
+      },
     };
     resourceInstance = {
-      pageletTitle: function(title) {
+      pageletTitle(title) {
         return title;
-      }
+      },
     };
     swig.setExtension('_resource', resourceInstance);
     spy = sinon.spy(resourceInstance, 'pageletTitle');
@@ -35,15 +35,15 @@ describe('Tags: ' + tagName, function() {
   });
 
   it('should render title', function() {
-    expect(swig.render('{% title %}bar{% endtitle %}')).to.equal('<title>bar</title>');
+    assert(swig.render('{% title %}bar{% endtitle %}') === '<title>bar</title>');
     sinon.assert.calledWith(spy, 'bar');
     spy.reset();
 
-    expect(swig.render('{% title %}{{foo.bar}}{% endtitle %}', context)).to.equal('<title>bar</title>');
+    assert(swig.render('{% title %}{{foo.bar}}{% endtitle %}', context) === '<title>bar</title>');
     sinon.assert.calledWith(spy, 'bar');
     spy.reset();
 
-    expect(swig.render('{% title %}test-{{foo.bar}}{% endtitle %}', context)).to.equal('<title>test-bar</title>');
+    assert(swig.render('{% title %}test-{{foo.bar}}{% endtitle %}', context) === '<title>test-bar</title>');
     sinon.assert.calledWith(spy, 'test-bar');
     spy.reset();
   });
