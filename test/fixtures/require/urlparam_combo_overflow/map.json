@@ -3,22 +3,22 @@
     "comboPattern": "/co??%s",
     "comboMaxLen": 100,
     "res": {
-        "components/nav/nav.js": {
+        "component/nav/nav.js": {
             "uri": "c/nav/nav.js",
             "type": "js",
             "deps": [
-                "views/jquery/jquery.js",
-                "components/nav/nav.css"
+                "view/jquery/jquery.js",
+                "component/nav/nav.css"
             ]
         },
-        "components/nav/nav.css": {
+        "component/nav/nav.css": {
             "uri": "c/nav/nav.css",
             "type": "css",
             "deps": [
-                "views/reset/reset.css"
+                "view/reset/reset.css"
             ]
         },
-        "components/foo/foo.tpl": {
+        "component/foo/foo.tpl": {
             "uri": "c/foo/foo.tpl",
             "type": "tpl",
             "deps": [
@@ -26,32 +26,32 @@
                 "sub"
             ]
         },
-        "components/sub/sub.tpl": {
+        "component/sub/sub.tpl": {
             "uri": "c/sub/sub.tpl",
             "type": "tpl"
         },
-        "views/jquery/jquery.js": {
+        "view/jquery/jquery.js": {
             "uri": "v/jquery/jquery.js",
             "type": "js"
         },
-        "views/reset/reset.css": {
+        "view/reset/reset.css": {
             "uri": "v/reset/reset.css",
             "type": "css"
         },
-        "views/multiple/main/chick/chick.js": {
+        "view/multiple/main/chick/chick.js": {
             "uri": "v/multiple/main/chick/chick.js",
             "type": "js"
         },
-        "views/multiple/main/goose/goose.js": {
+        "view/multiple/main/goose/goose.js": {
             "uri": "v/multiple/main/goose/goose.js",
             "type": "js"
         },
-        "views/multiple/second/run/run.js": {
+        "view/multiple/second/run/run.js": {
             "uri": "v/multiple/second/run/run.js",
             "type": "js"
         },
-        "views/index/index.tpl": {
-            "uri": "views/test.tpl",
+        "view/index/index.tpl": {
+            "uri": "view/test.tpl",
             "type": "tpl",
             "deps": [
                 "foo"

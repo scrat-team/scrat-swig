@@ -1,16 +1,16 @@
 'use strict';
 
-var swig = require('swig');
-var expect = require('expect.js');
-var sinon = require('sinon');
+const swig = require('swig');
+const assert = require('assert');
+const sinon = require('sinon');
 
-var tagName = 'script';
-var tag = require('../../../lib/tags/' + tagName);
+const tagName = 'script';
+const tag = require('../../../lib/tags/' + tagName);
 
 describe('Tags: ' + tagName, function() {
-  var spy;
-  var context;
-  var resourceInstance;
+  let spy;
+  let context;
+  let resourceInstance;
 
   before(function() {
     swig.setTag(tagName, tag.parse, tag.compile, tag.ends, tag.blockLevel || false);
@@ -18,21 +18,21 @@ describe('Tags: ' + tagName, function() {
       locals: {
         clz: 'test',
         foo: {
-          bar: 'bar'
-        }
-      }
+          bar: 'bar',
+        },
+      },
     };
     resourceInstance = {
-      addScript: function(input) {
+      addScript(input) {
         return input;
-      }
+      },
     };
     swig.setExtension('_resource', resourceInstance);
     spy = sinon.spy(resourceInstance, 'addScript');
   });
 
   it('should collect script', function() {
-    expect(swig.render('{% script %}var a = "b\" + {{clz}};{% endscript %}', context)).to.equal('');
+    assert(swig.render('{% script %}var a = "b\" + {{clz}};{% endscript %}', context) === '');
     sinon.assert.calledWith(spy, 'var a = "b" + test;');
     spy.reset();
   });

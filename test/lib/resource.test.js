@@ -1,19 +1,19 @@
 'use strict';
 
-var expect = require('expect.js');
-var Mock = require('mockjs');
-var Resource = require('../../lib/resource');
+const assert = require('assert');
+const Mock = require('mockjs');
+const Resource = require('../../lib/resource');
 
 describe('Lib: resource', function() {
   describe('genComboURI', function() {
-    var resource;
-    var mockData;
+    let resource;
+    let mockData;
     beforeEach(function() {
       resource = new Resource({});
       mockData = Mock.mock({
-        'scripts|10': ['0_@string(lower, 10)'],
-        'scripts2|10': ['-2_@string(lower, 10)'],
-        'scripts3|10': ['3_@string(lower, 10)']
+        'scripts|10': [ '0_@string(lower, 10)' ],
+        'scripts2|10': [ '-2_@string(lower, 10)' ],
+        'scripts3|10': [ '3_@string(lower, 10)' ],
       });
       mockData.mapping = {};
       mockData.scripts.forEach(function(item) {
@@ -28,14 +28,14 @@ describe('Lib: resource', function() {
     });
 
     it('should return only one url', function() {
-      var result = resource.genComboURI(mockData.scripts);
-      expect(result.length).to.equal(1);
+      const result = resource.genComboURI(mockData.scripts);
+      assert(result.length === 1);
     });
 
     it('should return multi url', function() {
-      var maxUrlLength = 100;
-      var result = resource.genComboURI(mockData.scripts, maxUrlLength);
-      expect(result.length).to.equal(2);
+      const maxUrlLength = 100;
+      const result = resource.genComboURI(mockData.scripts, maxUrlLength);
+      assert(result.length === 2);
     });
 
     // it('should return group', function() {
