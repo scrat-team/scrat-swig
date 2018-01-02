@@ -37,6 +37,7 @@ describe('Tags: ' + tag, function() {
       const clearassert = opt.assert.replace(/\r\n|\s/g, '');
       const clearOut = out.replace(/\n|\s/g, '');
       assert(clearOut === clearassert);
+      swig.cleanOptions();
     });
   });
 });

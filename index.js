@@ -9,6 +9,8 @@ const tagNames = [ 'body', 'head', 'html', 'pagelet', 'require', 'css', 'script'
 module.exports = exports = swig;
 exports.tagNames = tagNames;
 exports.Resource = Resource;
+exports.setServiceWorkerRegistrationJS = Resource.setServiceWorkerRegistrationJS;
+exports.setCombo = Resource.setCombo;
 exports.filters = exports.filters || filters;
 
 exports.configure = function(options) {
@@ -46,3 +48,6 @@ exports.middleware = function createSwigMiddleware(options) {
     next();
   };
 };
+
+// for unittest
+exports.cleanOptions = Resource.cleanOptions;
