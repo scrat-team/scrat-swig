@@ -1,6 +1,6 @@
 {
   "name": "scrat-swig",
-  "version": "1.1.0-pwa3",
+  "version": "1.1.0-pwa5",
   "description": "Extensions of swig for scrat",
   "main": "index.js",
   "scripts": {
